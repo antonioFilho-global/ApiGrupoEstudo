@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv').config()
 const app = express();
-const con = require('./model/conexao')
+const con = require('./model/conexao');
 const jwt = require('jsonwebtoken');
 const {obterAlunos} = require('./model/alunosModel');
 const {obterEncontros} = require('./model/encontrosModel');
@@ -40,7 +40,7 @@ function verifyJWT (req, res, next) {
 /* CRUD alunos*/
 
 /* Rota get para obter todos os alunos */
-app.get('/bd/alunos', verifyJWT, async (req, res) => {
+app.get('/bd/alunos', async (req, res) => {
     try{
         const resultado = await obterAlunos(req, res);
         const dados =  resultado.rows;
@@ -89,7 +89,7 @@ app.post('/bd/cadastrarAssunto', verifyJWT, async (req, res) => {
 });
 
 /* Rota get para obter todos os assuntos */
-app.get('/bd/assuntos', verifyJWT, async (req, res) => {
+app.get('/bd/assuntos', async (req, res) => {
     try{
         const resultado = await obterAssuntos(req, res);
         const dados =  resultado.rows;
@@ -137,7 +137,7 @@ app.post('/bd/cadastrarEncontro', verifyJWT, async (req, res) => {
 });
 
 /* Rota get para obter todos os encontros */
-app.get('/bd/encontros', verifyJWT, async (req, res) => {
+app.get('/bd/encontros', async (req, res) => {
     try{
         const resultado = await obterEncontros(req, res);
         const dados =  resultado.rows;
